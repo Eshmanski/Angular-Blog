@@ -43,4 +43,14 @@ export class PostService {
         }
       }));
   }
+
+  update(post: Post): Observable<Post> {
+    const { id, ...bodyPost } = post;
+    return this.http.patch<BodyPost>(`${environment.fbDbUrl}/posts/${post.id}.json`, bodyPost)
+      .pipe(map((bodyPost: BodyPost): Post => {
+        return {
+          ...bodyPost, id, date: new Date(bodyPost.date)
+        }
+      }));
+  }
 }
