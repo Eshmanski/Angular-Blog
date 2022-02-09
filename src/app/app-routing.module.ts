@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '', component: MainLayoutComponent, children: [
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '', component: HomePageComponent },
-      { path: 'path/:id', component: PostPageComponent }
+      { path: 'post/:id', component: PostPageComponent }
     ]
   },
   {
