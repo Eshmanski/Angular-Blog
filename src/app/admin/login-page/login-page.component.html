@@ -6,16 +6,16 @@
     [ngClass]="{invalid: form.get('email')?.['touched'] && form.get('email')?.['invalid']}"
   >
       <label for="email">Email</label>
-      <input id="email" type="email">
+      <input id="email" type="email" formControlName="email">
       <div *ngIf="form.get('email')?.['touched'] && form.get('email')?.['invalid']"
         class="validation">
           <small
             *ngIf="form.get('email')?.errors?.['required']"
-          >Заполните поле email</small>
+          >Заполните поле</small>
 
           <small
             *ngIf="form.get('email')?.errors?.['email']"
-          >Не корректный email</small>
+          >Некорректный email</small>
       </div>
   </div>
 
@@ -23,13 +23,19 @@
     class="form-control"
     [ngClass]="{invalid: form.get('password')?.['touched'] && form.get('password')?.['invalid']}"
   >
-      <label for="password">Email</label>
-      <input id="password" type="password">
+      <label for="password">Пароль</label>
+      <input id="password" type="password" formControlName="password">
       <div
         class="validation"
         *ngIf="form.get('password')?.['touched'] && form.get('password')?.['invalid']"
       >
-          <small>Error</small>
+          <small
+            *ngIf="form.get('password')?.errors?.['required']"
+          >Заполните поле</small>
+
+          <small
+            *ngIf="form.get('password')?.errors?.['minlength']"
+          >Пароль должен быть не менее {{form.get('password')?.errors?.['minlength']?.['requiredLength']}} символов</small>
       </div>
   </div>
 
@@ -38,4 +44,5 @@
     class="btn btn-primary"
     [disabled]="form.invalid"
   >Войти</button>
+
 </form>
